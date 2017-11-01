@@ -7,7 +7,7 @@ PHICoin is based off of LearnCoin and SmallChange, anothers cryptocurrencies whi
 We don't take any credit for the Develop of codes, barring the few changes I have made. All credit goes to the creator of LearnCoin and others references.
 
 ## Details
-CiupCoin (CPC) - a 'faster' version of Litecoin which also uses scrypt
+PHICoin (PHC) - a 'faster' version of Litecoin which also uses scrypt
 as a proof of work scheme and is intended for microtransactions.
  - 30 seconds block targets
  - 42 007 680 total coins
@@ -22,7 +22,7 @@ means be used as a real cryptocurrency. All of the coin parameters
 are chosen arbitrarily or at most with 'fairness' towards everyone in mind.
 
 So actually, this 'new' coin exists for the following reasons:
- - CPC proves that really anyone(!) can start a Litecoin/Bitcoin based currency
+ - PHC proves that really anyone(!) can start a Litecoin/Bitcoin based currency
     (just look at the changes I applied to the original Litecoin source,
      for genesis block generation look at main.cpp)
  - allows me to experiment with coin parameters (in a private network)
