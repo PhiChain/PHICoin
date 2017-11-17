@@ -1,33 +1,9 @@
-# PHICoin: a educational cryptocurrency.
+# PHICoin: A Cryptocurrency to Learn about Cryptocurrencies
 
-[![Build Status](https://travis-ci.org/ChrisRackauckas/ExamplePackage.jl.svg?branch=master)](https://travis-ci.org/ChrisRackauckas/ExamplePackage.jl)
-[![Build status](https://ci.appveyor.com/api/projects/status/9iuvdt0j0mw6au0k?svg=true)](https://ci.appveyor.com/project/ChrisRackauckas/examplepackage-jl)
+PHICoin is a fork of a fork of LiteCoin  (the second fork is called SmallChange). It was created for educational purposes with two main objectives in mind. First, we want to tell the story about cryptocurrencies in a learning-by-doing fashiong; and second, we want to help people to create their own cryptocurrency, i.e. with the features they would like to consider within the boundaries of the Litecoin setup, e.g. Proof-of-Work, etc.  
 
-PHICoin is based off of LearnCoin and SmallChange, anothers cryptocurrencies which is itself based off of the original Litecoin source code. Users will be able to modify PHICoin into their own cryptocurrency. Ideally users should have at least two computers running Ubuntu 14 to begin, although other versions of Ubuntu or Linux distributions also work as well.
-We don't take any credit for the Develop of codes, barring the few changes I have made. All credit goes to the creator of LearnCoin and others references.
+We don't take any credit for the develop of the coding, outside the few changes we made. All credit goes to the creator of LiteCoin and SmallChange.
 
-## Details
-PHICoin (PHC) - a 'faster' version of Litecoin which also uses scrypt
-as a proof of work scheme and is intended for microtransactions.
- - 30 seconds block targets
- - 42 007 680 total coins
- - no subsidy after approximately 5 years;
-    in between: 10 coins per generated block
- - difficulty retargets every 5 min
- - currently peers are looked up over IRC only
- - currently no block checkpoints are in the code (but could be easily
-   added)
-Other than that, this coin is exactly like Litecoin and should by no
-means be used as a real cryptocurrency. All of the coin parameters
-are chosen arbitrarily or at most with 'fairness' towards everyone in mind.
-
-So actually, this 'new' coin exists for the following reasons:
- - PHC proves that really anyone(!) can start a Litecoin/Bitcoin based currency
-    (just look at the changes I applied to the original Litecoin source,
-     for genesis block generation look at main.cpp)
- - allows me to experiment with coin parameters (in a private network)
-
-Credits go to the original authors/communities that created Bitcoin and Litecoin.
 
 ## References
 `LearnCoin`
@@ -56,64 +32,60 @@ $ sudo apt-get install build-essential
 $ sudo apt-get install openssl
 ```
 
-Is necessary you have two machines run in a common network.
-
-We will usage a virtual machine in VMWare, the proof version in here:
+Since it is necessary to have two machines running in a common network, we will use virtual machines in a VMWare environment (of course you can use any other alternative to emulate operating systems). To download vmware you can use the following links:
 - for [Linux][Linux]
 - for [Windows][Windows]
 - for [Mac][Mac]
 
-Then, download an Ubuntu 14 image from Mega - [Ubuntu 14][Ubuntu 14], create a copy and install both machines in VMWare, the user is `linux` and the password is `admin123`.
-* Remember: VMWare is not necessary, I use it because it is versatile.
+The operating system with all the required libraries (previously listed) is available at Mega - [Ubuntu 14][Ubuntu 14]. After downloading,  create a copy of the file and install two machines in VMWare (each one started from a different file). 
 
-
-### Downloading PHICoin
-On both computers, open the terminal in your favorite directory and download the project.
+### Cloning PHICoin
+On each virtual machine, open the terminal and download the project.
 ```julia
 $ git clone https://github.com/franciscorosales-marticorena/PHICoin.git
 ```
 
 ### Installing PHICoin
-In the project, enter `.../PHICoin/src` for the terminal and execute:
+In the project, enter `.../PHICoin/src` in a terminal window and execute:
 ```julia
-$ make -f makefile.unix	// Creas tu billetera en el directorio de tu SO
-$ ./PHICoin	// Te solicitara un usuario y una contraseña
+$ make -f makefile.unix	// creates wallet
+$ ./PHICoin	// asks for a user and a password
 ```
-If you did well, you will see a message requesting a user and password for your PHICoin wallet
+If evrything went well, you will see a message requesting a user and password for your PHICoin wallet
 
 ### Setting up our credentials
-In the directory of your OS enter to `./PHICoin` and within this, we create a file called `PHICoin.conf` that will contain the following:
+In the directory of your OS enter  `./PHICoin` and within this directory, create a file called `PHICoin.conf` that contains the following:
 ```julia
-	rpcuser=<<usuario_unico>>
-	rpcpassword=<<contrasenna_unica>>
-	addnode=<<IP de tu otra computadora>>
+	rpcuser=<<unique_user>>
+	rpcpassword=<<unique_password>>
+	addnode=<<IP_of_the_other_computer>>
 ```
 
 ### Mining
-This is the process by which the miners receive rewards, to start the mine in PHICoin return to `.../PHICoin/src` by the terminal and execute:
+This is the process by which the miners receive rewards, to start the mine in PHICoin return to `.../PHICoin/src` in the terminal and execute:
 ```julia
 # First we need run our node:
-$ ./PHICoin & // Inicia el servicio (ya eres un nodo)
-$ ./PHICoin getinfo // Informacion acerca de su nodo
+$ ./PHICoin & // starts the service (you are already a node)
+$ ./PHICoin getinfo // information about the node
 
 # Now we can star the mining:
-$ ./PHICoin setgenerate true 4 // Inicias a Minar usando multi-hilos
-$ ./PHICoin getmininginfo // Informacion acerca del minado
-$ ./PHICoin getbalance // Podemos ver cuanto dinero tenemos
+$ ./PHICoin setgenerate true 4 // start mining using multi-threads
+$ ./PHICoin getmininginfo // information about the mining
+$ ./PHICoin getbalance // check the account balance
 ```
-•	The mining is not necessary, but run your node is necessary in every computer.
+Note: Mining is not necessary, but to run your node is necessary in every computer.
 
 ### Making transactions
-After starting the mining we hope to have some money to start our transactions.
+After starting the mining we wait until we have some money to start our transactions.
 ```julia
 # First we need create an account:
-$ ./PHICoin getnewaddress "tu_nombre_de_Cuenta"
+$ ./PHICoin getnewaddress "name_of_account"
 $ ./PHICoin listaccounts
 
 # Now we make our first transaction
-$ ./PHICoin move "" "tu_nombre_de_cuenta" "monto"
-$ ./PHICoin sendtoaddress "direccion_billetera" "monto"
-$ ./PHICoin gettransaction "hash_de_tx"
+$ ./PHICoin move "" "name_of_account" "amount"
+$ ./PHICoin sendtoaddress "address_of_wallet" "amount"
+$ ./PHICoin gettransaction "transaction_hash"
 ```
 ### Consulting the BlockChain
 If I want to see the blocks and transactions, we can use:
@@ -123,10 +95,12 @@ $ ./PHICoin listtransactions
 $ ./PHICoin listunspent
 ```
 
-## Note
-For more information you write to: 
+## Warning
+PHICoin should not be used as a real cryptocurrency. All of the coin parameters are chosen arbitrarily or at most with 'fairness' towards everyone in mind. Again, this PHICoin exists becuse:
+ -  proves that really anyone(!) can start a Litecoin/Bitcoin based currency (just look at the changes I applied to the original Litecoin source, for genesis block generation look at main.cpp)
+ - allowed us to experiment with coin parameters (in a private network)
 
-## keyword
+## keywords
 `PHICoin`
 `Cryptocurrency`
 
@@ -134,4 +108,4 @@ For more information you write to:
 [Linux]:https://www.vmware.com/products/workstation-for-linux.html
 [Windows]:https://www.vmware.com/products/workstation.html
 [Mac]:https://www.vmware.com/products/fusion.html
-[Ubuntu 14]:https://mega.nz/#!0TBUyaLD!3g65KW6DkIsS15vuWchMEaTT2Xomg_RstXZbSDjQKK4
+[Ubuntu 14]:https://mega.nz/#!5vpFWCZS!lfyKNxBqTHriyihUsrMtVtPE2tX3CmhKTBMWnDJ0-bQ
